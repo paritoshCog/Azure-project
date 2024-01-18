@@ -23,10 +23,21 @@ dbutils.fs.ls("abfss://<container>@<storageaccountname>.dfs.core.windows.net")
 4. using service principle
 5. by creating key vault.
   * create azure key vault, add secrets to key vault ---> create databricks secret scope ---> get secret using dbutils.secrets.get (access notbook/cluster/jos)
-  * create secret scope by adding /secrets/createScope --> configure the scope --> put DNS name and Resource ID of azure key vault.
+  * create secret scope by adding #/secrets/createScope in dashboard URL --> configure the scope --> put DNS name and Resource ID of azure key vault.
   * DNS name (vault URI) and Resource ID is available in the azure key vault properties.
 
-    
+**    --> var = dbutils.secrets.get(scope = "<scope_name>", key = "<key_name>"   // we will assign the value to a variable then use it as secrete key
+    --> spark.conf.set("fs.azure.account.key.<storage-account>.dfs.core.windows.net", var)**
+
+-1. access key of storage account 
+
+![Screenshot (36)](https://github.com/paritoshCog/Azure-project/assets/128465174/e6fd93f1-3e07-4944-a50b-2cb2669323ba)
+
+
+0. Screenshot of databricks
+   
+![Screenshot (35)](https://github.com/paritoshCog/Azure-project/assets/128465174/a0155dbe-7c4b-4240-8b16-f855c87f525b)
+
 
 All the steps are can be done with the help of azure synapse analytics, all the services are already integrated in the azure synapse analytics like Datafactory, Databricks, SQL etc.
 
