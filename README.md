@@ -22,6 +22,9 @@ dbutils.fs.ls("abfss://<container>@<storageaccountname>.dfs.core.windows.net")
   
 4. using service principle
 5. by creating key vault.
+  * create azure key vault, add secrets to key vault ---> create databricks secret scope ---> get secret using dbutils.secrets.get (access notbook/cluster/jos)
+
+    
 
 All the steps are can be done with the help of azure synapse analytics, all the services are already integrated in the azure synapse analytics like Datafactory, Databricks, SQL etc.
 
