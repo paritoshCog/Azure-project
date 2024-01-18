@@ -23,6 +23,8 @@ dbutils.fs.ls("abfss://<container>@<storageaccountname>.dfs.core.windows.net")
 4. using service principle
 5. by creating key vault.
   * create azure key vault, add secrets to key vault ---> create databricks secret scope ---> get secret using dbutils.secrets.get (access notbook/cluster/jos)
+  * create secret scope by adding /secrets/createScope --> configure the scope --> put DNS name and Resource ID of azure key vault.
+  * DNS name (vault URI) and Resource ID is available in the azure key vault properties.
 
     
 
