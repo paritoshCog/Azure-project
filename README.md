@@ -8,6 +8,21 @@ Welcome to the Azure-project
 
 Its a practice project in which I have learn Azure datafactory for ingestion, azure datalake gen 2 for storage, azure databricks for transformation, azure synapse analytics for analysis. I have uploaded the screenshot of the azure portal. In this project, Firstly I have created the storage account then create two containers which are Raw data and Transformed data. I have used Azure data factory to collect data from source. In this project I take data from git-hub which I have downloaded from the Kaggle i.e. Tokyo-Olympic. The data is in .CSV format. I created pipeline line in azure data factory where http format is the source. I put the data into the Raw container. I use the azure Databricks service to transform the raw data. I setup the connection of raw container with azure Databricks(The codes are uploaded in the repository). After the basic transformation in azure Databricks, uploaded the data into the transformed container.
 
+There are few ways to connect storage account with databricks:
+1. using accessing keys, but its not an efficient way
+2. using SAS(shared access signature) tokens, restrict for specific time, allow specific permission, limited access to private keys. Recommended for external client.
+   * we can generate SAS token withing specific container and provide specific permissions like read, write....
+
+**spark.conf.set("fs.azure.account.auth.type.<storage-account>.dfs.core.windows.net", "SAS")
+spark.conf.set("fs.azure.sas.token.provider.type.<storage-account>.dfs.core.windows.net", "org.apache.hadoop.fs.azurebfs.sas.FixedSASTokenProvider")
+spark.conf.set("fs.azure.sas.fixed.token.<storage-account>.dfs.core.windows.net", "<sas-token-key>")
+
+dbutils.fs.ls("abfss://<container>@<storageaccountname>.dfs.core.windows.net")
+**
+  
+4. using service principle
+5. by creating key vault.
+
 All the steps are can be done with the help of azure synapse analytics, all the services are already integrated in the azure synapse analytics like Datafactory, Databricks, SQL etc.
 
 I use azure synapse analytics to use SQL on the data.
